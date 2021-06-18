@@ -1,0 +1,44 @@
+﻿<Window x:Class="EmployeesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeesApp"
+        mc:Ignorable="d"
+        Title= "MainWindow" Height="450" Width="800" Closed="Window_Closed" Icon="Resources/Logo.png">
+    <Grid Style="{StaticResource BackgroundColorWindow}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.08*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="ToolBarGrid" Grid.Row="0" Style="{StaticResource BackgroundColorWindow}">
+            <StackPanel Orientation="Horizontal" Width="1920"/>
+        </Grid>
+
+        <Grid x:Name="HeaderGrid" Grid.Row="1" Height="90" Width="19200" Style="{StaticResource BackgroundColor}">
+            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+                
+                <Image Source="Resources/Logo.png" Style="{StaticResource Logo}"></Image>
+
+            </StackPanel>
+        </Grid>
+
+        <Frame x:Name="MainFrame" Grid.Row="2" NavigationUIVisibility="Hidden" Style="{StaticResource BackgroundColor}"   ContentRendered="MainFrame_ContentRendered" Navigated="MainFrame_Navigated">
+
+
+        </Frame>
+        <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="AddingButton" Content="Добавить сотрудника" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top"   Click="Button_Click"/>
+            <Button x:Name="PastButton" Content="Бывшие сотрудники" HorizontalAlignment="Left" Grid.Row="2" Click="PastButton_Click"/>
+            <Button x:Name="AllEmployee" Content="Все сотрудники" Grid.Column="1"  Grid.Row="2" Click="AllEmployee_Click"/>
+            <Button x:Name="EnterButton" Content="Войти"  Click="Button_Click_4"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

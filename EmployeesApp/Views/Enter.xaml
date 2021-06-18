@@ -1,0 +1,25 @@
+﻿<Page x:Class="EmployeesApp.Views.Enter"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EmployeesApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Enter">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="24"/>
+<TextBox x:Name="LoginTextBox"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" TextChanged="LoginTextBox_TextChanged"/>
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="24"/>
+        
+        <PasswordBox x:Name="PasswordTextBox"  HorizontalAlignment="Left" Height="23"   VerticalAlignment="Top" Width="166" PasswordChanged="PasswordTextBox_PasswordChanged"/>
+           <TextBox x:Name="EmailTextBox">Введите email</TextBox>
+            <Button Content="Вход" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+            
+            
+
+        </StackPanel>
+    </Grid>
+</Page>

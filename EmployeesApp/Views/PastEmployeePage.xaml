@@ -1,0 +1,63 @@
+﻿<Page x:Class="EmployeesApp.Views.PastEmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EmployeesApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PastEmployeePage">
+
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="775*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListView x:Name="PastEmployeeListView" Grid.ColumnSpan="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding name}"></TextBlock>
+                                    <TextBlock Text="{Binding surname}"></TextBlock>
+                                    <TextBlock Text="{Binding patronymic}"></TextBlock>
+                                    <TextBlock Text="{Binding post}"></TextBlock>
+                                    <TextBlock Text="{Binding address}"></TextBlock>
+                                    <TextBlock Text="{Binding education}"></TextBlock>
+                                    <TextBlock Text="{Binding id_worker_information}"></TextBlock>
+                                    
+                                    <StackPanel Grid.Column="1">
+                                        
+                                        
+                                        <Button x:Name="DelButton" Click="DelButton_Click" >Удаление из базы</Button>
+                                        
+                                    </StackPanel>
+
+                                </StackPanel>
+                                
+                            </Grid>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+            </Grid>
+
+
+
+        </StackPanel>
+        
+    </Grid>
+</Page>

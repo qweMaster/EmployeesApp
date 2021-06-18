@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="818e181d1c374f72a54b06246e77aec9" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Human_resources_departmentModel.DataAccept" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="Human_resources_departmentModel.PastEmployee" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Human_resources_departmentModel.Posts" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Human_resources_departmentModel.Role" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="Human_resources_departmentModel.Users" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="Human_resources_departmentModel.Worker_information" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="Human_resources_departmentModel.FK_DataAccept_Worker_information" />
+        <AssociationConnector Association="Human_resources_departmentModel.FK_Users_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

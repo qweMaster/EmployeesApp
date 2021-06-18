@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Human_resources_departmentModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DataAccept">
+          <Key>
+            <PropertyRef Name="id_history" />
+          </Key>
+          <Property Name="date_accept" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_dis" Type="nvarchar" MaxLength="50" />
+          <Property Name="post" Type="nvarchar" MaxLength="100" />
+          <Property Name="id_history" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_worker" Type="int" />
+        </EntityType>
+        <EntityType Name="PastEmployee">
+          <Key>
+            <PropertyRef Name="id_past_employee" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="post" Type="nvarchar" MaxLength="300" />
+          <Property Name="address" Type="nvarchar" MaxLength="300" />
+          <Property Name="education" Type="nvarchar(max)" />
+          <Property Name="reason" Type="nvarchar(max)" />
+          <Property Name="id_past_employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="post_name" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="role" />
+          </Key>
+          <Property Name="role" Type="int" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="int" />
+        </EntityType>
+        <EntityType Name="Worker_information">
+          <Key>
+            <PropertyRef Name="id_worker_information" />
+          </Key>
+          <Property Name="id_worker" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="post" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="education" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="id_worker_information" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DataAccept_Worker_information">
+          <End Role="Worker_information" Type="Self.Worker_information" Multiplicity="0..1" />
+          <End Role="DataAccept" Type="Self.DataAccept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker_information">
+              <PropertyRef Name="id_worker_information" />
+            </Principal>
+            <Dependent Role="DataAccept">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Human_resources_departmentModelContainer">
+          <EntitySet Name="DataAccept" EntityType="Self.DataAccept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PastEmployee" EntityType="Self.PastEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker_information" EntityType="Self.Worker_information" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DataAccept_Worker_information" Association="Self.FK_DataAccept_Worker_information">
+            <End Role="Worker_information" EntitySet="Worker_information" />
+            <End Role="DataAccept" EntitySet="DataAccept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Human_resources_departmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Human_resources_departmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DataAccept" EntityType="Human_resources_departmentModel.DataAccept" />
+          <EntitySet Name="PastEmployee" EntityType="Human_resources_departmentModel.PastEmployee" />
+          <EntitySet Name="Posts" EntityType="Human_resources_departmentModel.Posts" />
+          <EntitySet Name="Role" EntityType="Human_resources_departmentModel.Role" />
+          <EntitySet Name="Users" EntityType="Human_resources_departmentModel.Users" />
+          <EntitySet Name="Worker_information" EntityType="Human_resources_departmentModel.Worker_information" />
+          <AssociationSet Name="FK_DataAccept_Worker_information" Association="Human_resources_departmentModel.FK_DataAccept_Worker_information">
+            <End Role="Worker_information" EntitySet="Worker_information" />
+            <End Role="DataAccept" EntitySet="DataAccept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Human_resources_departmentModel.FK_Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DataAccept">
+          <Key>
+            <PropertyRef Name="id_history" />
+          </Key>
+          <Property Name="date_accept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_dis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="post" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_history" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_worker" Type="Int32" />
+          <NavigationProperty Name="Worker_information" Relationship="Human_resources_departmentModel.FK_DataAccept_Worker_information" FromRole="DataAccept" ToRole="Worker_information" />
+        </EntityType>
+        <EntityType Name="PastEmployee">
+          <Key>
+            <PropertyRef Name="id_past_employee" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="post" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="education" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_past_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="post_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="role1" />
+          </Key>
+          <Property Name="role1" Type="Int32" Nullable="false" />
+          <Property Name="role_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Human_resources_departmentModel.FK_Users_Role" FromRole="Role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="Int32" />
+          <NavigationProperty Name="Role1" Relationship="Human_resources_departmentModel.FK_Users_Role" FromRole="Users" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Worker_information">
+          <Key>
+            <PropertyRef Name="id_worker_information" />
+          </Key>
+          <Property Name="id_worker" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="post" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="education" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_worker_information" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DataAccept" Relationship="Human_resources_departmentModel.FK_DataAccept_Worker_information" FromRole="Worker_information" ToRole="DataAccept" />
+        </EntityType>
+        <Association Name="FK_DataAccept_Worker_information">
+          <End Type="Human_resources_departmentModel.Worker_information" Role="Worker_information" Multiplicity="0..1" />
+          <End Type="Human_resources_departmentModel.DataAccept" Role="DataAccept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker_information">
+              <PropertyRef Name="id_worker_information" />
+            </Principal>
+            <Dependent Role="DataAccept">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Role">
+          <End Type="Human_resources_departmentModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="Human_resources_departmentModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="role1" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Human_resources_departmentModelContainer" CdmEntityContainer="Human_resources_departmentEntities">
+          <EntitySetMapping Name="DataAccept">
+            <EntityTypeMapping TypeName="Human_resources_departmentModel.DataAccept">
+              <MappingFragment StoreEntitySet="DataAccept">
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+                <ScalarProperty Name="id_history" ColumnName="id_history" />
+                <ScalarProperty Name="post" ColumnName="post" />
+                <ScalarProperty Name="date_dis" ColumnName="date_dis" />
+                <ScalarProperty Name="date_accept" ColumnName="date_accept" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PastEmployee">
+            <EntityTypeMapping TypeName="Human_resources_departmentModel.PastEmployee">
+              <MappingFragment StoreEntitySet="PastEmployee">
+                <ScalarProperty Name="id_past_employee" ColumnName="id_past_employee" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="post" ColumnName="post" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="Human_resources_departmentModel.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="post_name" ColumnName="post_name" />
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Human_resources_departmentModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role1" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Human_resources_departmentModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Worker_information">
+            <EntityTypeMapping TypeName="Human_resources_departmentModel.Worker_information">
+              <MappingFragment StoreEntitySet="Worker_information">
+                <ScalarProperty Name="id_worker_information" ColumnName="id_worker_information" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="post" ColumnName="post" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
